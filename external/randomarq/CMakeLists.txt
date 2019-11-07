@@ -172,12 +172,12 @@ if(NOT Threads_FOUND AND UNIX AND NOT APPLE)
   find_package(Threads)
 endif()
 
-add_executable(randomx-benchmark
-  src/tests/benchmark.cpp
-  src/tests/affinity.cpp)
-target_link_libraries(randomx-benchmark
-  PRIVATE randomx
-  PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+#add_executable(randomx-benchmark
+#  src/tests/benchmark.cpp
+#  src/tests/affinity.cpp)
+#target_link_libraries(randomx-benchmark
+#  PRIVATE randomx
+#  PRIVATE ${CMAKE_THREAD_LIBS_INIT})
 
 include(CheckCXXSourceCompiles)
 check_cxx_source_compiles("
@@ -188,9 +188,11 @@ int main() {
   a.is_lock_free();
 }" HAVE_CXX_ATOMICS)
 
-if(NOT HAVE_CXX_ATOMICS)
-  target_link_libraries(randomx-benchmark
-    PRIVATE "atomic")
-endif()
-set_property(TARGET randomx-benchmark PROPERTY POSITION_INDEPENDENT_CODE ON)
-set_property(TARGET randomx-benchmark PROPERTY CXX_STANDARD 11)
+#if(NOT HAVE_CXX_ATOMICS)
+#  target_link_libraries(randomx-benchmark
+#    PRIVATE "atomic")
+#endif()
+#set_property(TARGET randomx-benchmark PROPERTY POSITION_INDEPENDENT_CODE ON)
+#set_property(TARGET randomx-benchmark PROPERTY CXX_STANDARD 11)
+
+
